@@ -1,0 +1,10 @@
+<% if form.errors.any? %>
+  <div id='error_explanation'>
+    <h2 class="text-red-500 font-bold text-xl"><%= pluralize(form.errors.count, 'error') %>必需填寫:</h2>
+    <ul>
+    <% form.errors.full_messages.each do |message| %>
+      <li class=" text-lg text-red-500"><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

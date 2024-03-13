@@ -1,3 +1,14 @@
-<h1>Activities#index</h1>
-<p>Find me in app/views/activities/index.html.erb</p>
+<h1>活動一覽</h1>
 <%= link_to '建立活動',new_activity_path %>
+<article>
+  <% @activities.each do |activity| %>
+    <%= link_to activity_path(activity) do %>
+      <h2>活動標題：<%=  activity.title %></h2>
+      <p>活動簡介：<%= activity.description %></p>
+      <div>活動時間：<%= activity.start_time %></div>
+      <div>活動地點：<%= activity.location %></div>
+    <% end %>
+  <% end %>
+</article>
+
+
