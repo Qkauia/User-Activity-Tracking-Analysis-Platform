@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSignActivityCountToUsers < ActiveRecord::Migration[7.1]
   def change
     add_column :users, :sign_out_count, :integer, default: 0, null: false

@@ -1,4 +1,6 @@
-puts "建立資料中..."
+# frozen_string_literal: true
+
+puts '建立資料中...'
 
 User.create!(email: 'admin@test.com', password: '111111', password_confirmation: '111111', admin: true)
 
