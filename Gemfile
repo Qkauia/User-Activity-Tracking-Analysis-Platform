@@ -81,3 +81,6 @@ gem 'aasm'
 gem 'devise'
 
 gem 'paranoia', '~> 2.6'
+
+gem 'whenever', require: false
+

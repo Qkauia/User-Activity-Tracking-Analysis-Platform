@@ -6,6 +6,8 @@ class BookingsController < ApplicationController
     @booking = activity.bookings.new(booking_params)
     if @booking.save
       redirect_to root_path, notice: '參加成功'
+      SummaryMailer.send_daily_summary
+      SummaryMailer.send_weekly_summary
     else
       redirect_to activity_path(activity) , alert: '請確實填寫資料'
     end
