@@ -1,0 +1,44 @@
+<%= render 'shared/errors_message', form: form %>
+<div>
+  <%= form_with(model: form, lacal: true, data: { turbo: false }) do |f| %>
+    <div>
+      <%= f.label :title, '活動標題' %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.label :description, '活動簡單介紹' %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div>
+      <%= f.label :start_time, '活動開始時間' %>
+      <%= f.datetime_local_field :start_time %>
+    </div>
+
+    <div>
+      <%= f.label :end_time, '活動結束時間' %>
+      <%= f.datetime_local_field :end_time %>
+    </div>
+
+    <div>
+      <%= f.label :location, '活動地點' %>
+      <%= f.text_field :location %>
+    </div>
+
+    <div>
+      <%= f.label :max_participants, '人數限制' %>
+      <%= f.number_field :max_participants %>
+    </div>
+
+    <div>
+      <%= f.label :organizer, '活動單位' %>
+      <%= f.text_field :organizer %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>

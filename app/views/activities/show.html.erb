@@ -1,2 +1,16 @@
-<h1>Activities#show</h1>
-<p>Find me in app/views/activities/show.html.erb</p>
+<h1>活動資訊</h1>
+<div>
+  <%= link_to '修改活動',edit_activity_path(@activity) %>
+</div>
+<div>
+  <%= link_to '刪除活動',activity_path(@activity), data: { turbo_method: 'delete', turbo_confirm: '確定要刪除嗎？'  } %>
+</div>
+<article>
+  <h2>活動主題：<%= @activity.title %></h2>
+  <h3>主辦單位：<%= @activity.organizer %></h3>
+  <h4>活動地點：<%= @activity.location %></h4>
+  <div>報名人數：目前人數 / <%= @activity.max_participants %></div>
+  <div>開始時間：<%= @activity.start_time %> － 結束時間：<%= @activity.end_time %></div>
+  <p>詳細內容：<%= @activity.description %></p>
+</article>
+
