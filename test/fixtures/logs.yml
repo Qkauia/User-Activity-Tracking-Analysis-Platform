@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  activity: one
+  booking: one
+  log_type: MyString
+  timestamp: 2024-03-13 14:26:29
+
+two:
+  user: two
+  activity: two
+  booking: two
+  log_type: MyString
+  timestamp: 2024-03-13 14:26:29
