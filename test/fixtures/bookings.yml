@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  activity: one
+  booking_time: 2024-03-13 14:23:26
+  booking_status: MyString
+
+two:
+  user: two
+  activity: two
+  booking_time: 2024-03-13 14:23:26
+  booking_status: MyString
