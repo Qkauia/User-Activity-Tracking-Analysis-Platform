@@ -12,4 +12,9 @@ class User < ApplicationRecord
   def already_booked?(activity)
     bookings.where(activity_id: activity.id).exists?
   end
+
+  def self.admin_email
+    find_by(admin: true)&.email
+  end
+  
 end
