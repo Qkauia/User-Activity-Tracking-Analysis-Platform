@@ -79,3 +79,5 @@ gem 'faker', '~> 3.2'
 gem 'aasm'
 
 gem 'devise'
+
+gem 'paranoia', '~> 2.6'
