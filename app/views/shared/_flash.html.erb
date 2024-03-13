@@ -1,0 +1,7 @@
+<% [:notice, :alert].each do |type| %>
+  <% if flash[type] %>
+    <div class="<%= type %> text-center mt-[20px]">
+      <%= flash[type] %>
+    </div>
+  <% end %>
+<% end %>
