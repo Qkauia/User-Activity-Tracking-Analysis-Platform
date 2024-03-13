@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class Activity < ApplicationRecord
+  acts_as_paranoid
+
   has_many :bookings
   has_many :logs
 
   validates :title, :description, :start_time, :end_time, :location, :organizer, presence: true
-  validates :max_participants, presence: true, numericality: { greater_than: 0, only_integer: true }
+  validates :max_participants, presence: true, numericality: { greater_than: 5, only_integer: true }
   validate :end_time_greater_than_start_time
 
   private
