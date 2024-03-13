@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to activities_path, notice: '活動建立成功'
     else
-      redirect_to :new,alert: '輸入不正確'
+      render :new
     end
   end
 
@@ -26,7 +26,7 @@ class ActivitiesController < ApplicationController
     if @activity.update(activity_params)
       redirect_to activity_path(@activity), notice: '活動更新成功'
     else
-      redirect_to :edit
+      render :edit
     end
   end
 
@@ -46,7 +46,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :start_time, :end_time, :location, :organizer, :status)
+    params.require(:activity).permit(:title, :description, :start_time, :end_time, :location, :organizer, :status, :max_participants)
   end
 
 end
