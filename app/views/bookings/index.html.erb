@@ -1,0 +1,11 @@
+<h1>以報名的活動</h1>
+<article>
+  <% @bookings.each do |booking| %>
+    <%= link_to activity_path(booking.activity) do %>
+      <h2>活動標題：<%=  booking.activity.title %></h2>
+      <p>活動簡介：<%= booking.activity.description %></p>
+      <div>活動時間：<%= booking.activity.start_time %></div>
+      <div>活動地點：<%= booking.activity.location %></div>
+    <% end %>
+  <% end %>
+</article>
