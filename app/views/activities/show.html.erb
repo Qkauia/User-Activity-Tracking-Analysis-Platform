@@ -13,4 +13,7 @@
   <div>開始時間：<%= @activity.start_time %> － 結束時間：<%= @activity.end_time %></div>
   <p>詳細內容：<%= @activity.description %></p>
 </article>
+<div>
+  <%= render 'bookings/form', booking: @booking, activity: @activity %>
+</div>
 

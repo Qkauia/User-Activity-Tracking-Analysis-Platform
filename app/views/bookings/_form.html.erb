@@ -1,0 +1,14 @@
+<% unless current_user.already_booked?(@activity) %>
+  <%= form_with model: [activity, booking], data: { turbo: false } do |f| %>
+    <%= f.hidden_field :activity_id, value: @activity.id %>
+    <div>
+      <%= f.label :booker_name, '報名者姓名：' %>
+      <%= f.text_field :booker_name %>
+    </div>
+    <div>
+      <%= f.label :booker_email, '報名者信箱' %>
+      <%= f.email_field :booker_email, placeholder: '報名者信箱' %>
+    </div>
+    <%= f.submit '參加活動' %>
+  <% end %>
+<% end %>

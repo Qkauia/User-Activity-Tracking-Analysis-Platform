@@ -1,5 +1,6 @@
 <h1>活動一覽</h1>
-<%= link_to '建立活動',new_activity_path %>
+<%= link_to '建立活動', new_activity_path %>
+<%= link_to '我參加的活動', bookings_path %>
 <article>
   <% @activities.each do |activity| %>
     <%= link_to activity_path(activity) do %>
