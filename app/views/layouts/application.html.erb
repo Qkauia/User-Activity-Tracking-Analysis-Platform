@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= render "shared/flash" if flash.any? %>
     <%= yield %>
   </body>
 </html>
