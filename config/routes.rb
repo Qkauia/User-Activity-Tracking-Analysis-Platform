@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
-    passwords: 'users/passwords',
+    passwords: 'users/passwords'
   }
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :activities
+  resources :bookings
+  resources :logs
 
-  # root "posts#index"
+  root 'activities#index'
 end
