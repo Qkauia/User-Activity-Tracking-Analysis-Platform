@@ -1,4 +1,4 @@
-<% unless current_user.already_booked?(@activity) %>
+<% unless current_user&.already_booked?(@activity) %>
   <%= form_with model: [activity, booking], data: { turbo: false } do |f| %>
     <%= f.hidden_field :activity_id, value: @activity.id %>
     <div>

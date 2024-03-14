@@ -10,8 +10,13 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= render "shared/flash" if flash.any? %>
-    <%= yield %>
+  <body class="flex flex-col min-h-screen">
+    <div class="navbar bg-base-100 shadow-lg rounded-box flex mb-[20px] h-[45px] px-6">
+      <%= render 'shared/navbar' %>
+    </div>
+      <%= render "shared/flash" if flash.any? %>
+    <main class="flex-grow mx-[100px]" >
+      <%= yield %>
+    </main>
   </body>
 </html>

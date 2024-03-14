@@ -1,0 +1,21 @@
+<nav class="flex items-center">
+  <%= link_to '學習王', root_path, class: "px-2 mx-2 text-3xl font-bold hover:text-green-700" %>
+  <% if user_signed_in? %>
+    <div class="px-2 mx-2">
+      <%= link_to '登出', destroy_user_session_path, data: { turbo_method: "delete" }, class: 'text-3xl font-bold hover:text-red-700' %>
+    </div>
+    <div class="px-2 mx-2">
+      <%= link_to '更改密碼', edit_user_registration_path, class:'text-3xl font-bold hover:text-green-700' %>
+    </div>
+    <div class="px-2 mx-2">
+      <%= link_to '建立活動', new_activity_path, class:'text-3xl font-bold hover:text-green-700' %>
+    </div>
+    <div class="px-2 mx-2">
+      <%= link_to '我參加的活動', bookings_path, class:'text-3xl font-bold hover:text-green-700' %>
+    </div>
+  <% else %>
+    <div class="px-2 mx-2">
+      <%= link_to '註冊 / 登入', new_user_session_path, class: 'text-3xl font-bold hover:text-green-700', data: { controller: "login" } %>
+    </div>
+  <% end %>
+</nav>
