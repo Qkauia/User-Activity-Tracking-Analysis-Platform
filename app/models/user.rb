@@ -16,5 +16,4 @@ class User < ApplicationRecord
   # def self.admin_email
   #   find_by(admin: true)&.email
   # end
-  
 end

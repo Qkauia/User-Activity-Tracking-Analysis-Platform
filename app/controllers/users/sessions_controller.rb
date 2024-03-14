@@ -12,7 +12,9 @@ module Users
     # POST /resource/sign_in
     def create
       super do |user|
-        Log.create!(user: user, log_type: 'login', timestamp: Time.current)
+        user.logs.create!(log_type: 'login', timestamp: Time.current)
+      rescue ActiveRecord::RecordInvalid
+        Rails.logger.error "Sign in log create failed, user id : #{user.id}"
       end
     end
 
@@ -20,11 +22,10 @@ module Users
     def destroy
       user = current_user
       super
-      Log.create!(user: user, log_type: 'logout', timestamp: Time.current) if user
+      Log.create!(user:, log_type: 'logout', timestamp: Time.current) if user
+    rescue ActiveRecord::RecordInvalid
+      Rails.logger.error "Sign out log create failed, user id : #{user.id}"
     end
-    
-
-    
 
     # protected
 

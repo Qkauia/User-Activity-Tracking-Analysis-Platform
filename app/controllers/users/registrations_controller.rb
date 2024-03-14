@@ -13,7 +13,9 @@ module Users
     # POST /resource
     def create
       super do |user|
-        Log.create!(user: user, log_type: 'sign_up', timestamp: Time.current)
+        user.logs.create!(log_type: 'sign_up', timestamp: Time.current)
+      rescue ActiveRecord::RecordInvalid
+        Rails.logger.error "Sign up log create failed, user id : #{user.id}"
       end
     end
 
@@ -25,7 +27,9 @@ module Users
     # PUT /resource
     def update
       super do |user|
-          Log.create!(user: user, log_type: 'password_change', timestamp: Time.current)
+        user.logs.create!(log_type: 'password_change', timestamp: Time.current)
+      rescue ActiveRecord::RecordInvalid
+        Rails.logger.error "Password change log create failed, user id : #{user.id}"
       end
     end
 

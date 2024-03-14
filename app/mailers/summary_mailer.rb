@@ -1,5 +1,6 @@
-class SummaryMailer < ApplicationMailer
+# frozen_string_literal: true
 
+class SummaryMailer < ApplicationMailer
   def self.send_daily_summary
     User.where(admin: true).find_each do |admin|
       daily_summary(admin.email).deliver_later
@@ -21,5 +22,4 @@ class SummaryMailer < ApplicationMailer
     @time_now = Time.now.strftime('%Y-%m-%d %H:%M')
     mail(to: admin_email, subject: 'Hello!◎學習王每週摘要◎')
   end
-  
 end

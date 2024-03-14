@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ActivitiesController < ApplicationController
-  before_action :find_activity,only: [ :show, :edit, :update, :destroy]
-  
+  before_action :find_activity, only: %i[show edit update destroy]
+
   def new
     @activity = Activity.new
   end
@@ -16,12 +16,12 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def show 
+  def show
     @booking = Booking.new
+    current_user.logs.create!(log_type: 'activity_show', timestamp: Time.current, activity: @activity)
   end
 
-  def edit 
-  end
+  def edit; end
 
   def update
     if @activity.update(activity_params)
@@ -47,7 +47,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:title, :description, :start_time, :end_time, :location, :organizer, :status, :max_participants)
+    params.require(:activity).permit(:title, :description, :start_time, :end_time, :location, :organizer, :status,
+                                     :max_participants)
   end
-
 end

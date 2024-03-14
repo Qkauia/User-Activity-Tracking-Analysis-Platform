@@ -15,9 +15,8 @@ class Activity < ApplicationRecord
   def end_time_greater_than_start_time
     return if end_time.blank? || start_time.blank?
 
-    if end_time <= start_time
-      errors.add(:end_time, "必須晚於開始時間")
-    end
-  end
+    return unless end_time <= start_time
 
+    errors.add(:end_time, '必須晚於開始時間')
+  end
 end
