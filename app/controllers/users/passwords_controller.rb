@@ -18,11 +18,13 @@ module Users
     end
 
     # PUT /resource/password
-    def update
-      super do |user|
-        user.increment!(:reset_password_count) if user.errors.empty?
-      end
-    end
+    # def update
+    #   super do |user|
+    #     if user.errors.empty?
+    #       user.increment!(:reset_password_count)
+    #     end
+    #   end
+    # end
 
     # protected
 

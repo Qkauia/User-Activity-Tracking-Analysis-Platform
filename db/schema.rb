@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_102455) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_085623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,8 +56,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_102455) do
 
   create_table "logs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "activity_id", null: false
-    t.bigint "booking_id", null: false
+    t.bigint "activity_id"
+    t.bigint "booking_id"
     t.string "log_type"
     t.datetime "timestamp"
     t.datetime "created_at", null: false

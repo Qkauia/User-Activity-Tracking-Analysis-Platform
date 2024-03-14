@@ -11,16 +11,20 @@ module Users
 
     # POST /resource/sign_in
     def create
-      super do |resource|
-        resource.increment!(:sign_in_count)
+      super do |user|
+        Log.create!(user: user, log_type: 'login', timestamp: Time.current)
       end
     end
 
     # DELETE /resource/sign_out
     def destroy
-      current_user.increment!(:sign_out_count)
+      user = current_user
       super
+      Log.create!(user: user, log_type: 'logout', timestamp: Time.current) if user
     end
+    
+
+    
 
     # protected
 

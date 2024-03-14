@@ -13,7 +13,7 @@ module Users
     # POST /resource
     def create
       super do |user|
-        user.increment!(:registration_count) if user.persisted?
+        Log.create!(user: user, log_type: 'sign_up', timestamp: Time.current)
       end
     end
 
@@ -23,9 +23,11 @@ module Users
     # end
 
     # PUT /resource
-    # def update
-    #   super
-    # end
+    def update
+      super do |user|
+          Log.create!(user: user, log_type: 'password_change', timestamp: Time.current)
+      end
+    end
 
     # DELETE /resource
     # def destroy
