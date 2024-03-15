@@ -1,0 +1,12 @@
+<h1>使用者活動詳情</h1>
+
+<ul>
+  <% @logs.each do |log| %>
+    <li>
+      <p>
+        <%= format_datetime(log.created_at) %>
+        【 <%= t("log_type.#{log.log_type}") %> 】
+      </p>
+    </li>
+  <% end %>
+</ul>

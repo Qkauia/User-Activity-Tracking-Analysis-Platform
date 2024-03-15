@@ -1,0 +1,14 @@
+<h1>使用者活動</h1>
+<article>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <p>
+          最後活動時間: <%= format_datetime(user.logs.last&.created_at) %>
+          【 <%= link_to user.email, user_path(user), class: 'text-green-700' %> 】
+        </p>
+      </li>
+      <hr>
+    <% end %>
+  </ul>
+</article>
