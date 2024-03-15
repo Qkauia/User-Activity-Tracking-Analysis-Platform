@@ -20,7 +20,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @booking = Booking.new
-    current_user&.logs&.create!(log_type: 'browse_activity_show', timestamp: Time.current, activity: @activity)
+    current_user&.logs&.create!(type: 'browse_activity_show', activity: @activity)
     rescue ActiveRecord::RecordInvalid
     Rails.logger.error "browse activity booking page log create failed, user id : #{current_user.id}"
   end
@@ -46,7 +46,7 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.all
-    current_user&.logs&.create!(log_type: 'browse_root', timestamp: Time.current)
+    current_user&.logs&.create!(type: 'browse_root')
     rescue ActiveRecord::RecordInvalid
     Rails.logger.error "browse root page log create failed, user id : #{current_user.id}"
   end

@@ -1,5 +1,5 @@
 en:
-  log_type:
+  type:
     login: 登入動作
     logout: 登出動作
     sign_up: 註冊動作

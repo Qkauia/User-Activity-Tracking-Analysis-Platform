@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
     @booking = activity.bookings.new(booking_params)
     if @booking.save
       redirect_to root_path, notice: '參加成功'
-      current_user.logs.create!(log_type: 'submitted', timestamp: Time.current, booking: @booking, activity: )
+      current_user.logs.create!(type: 'submitted', booking: @booking, activity: )
       # SummaryMailer.send_daily_summary
       # SummaryMailer.send_weekly_summary
     else
@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking = current_user&.bookings&.find(params[:id])
     @booking.destroy
-    current_user.logs.create!(log_type: 'cancel_booking', timestamp: Time.current, booking: @booking)
+    current_user.logs.create!(type: 'cancel_booking', booking: @booking)
     redirect_to bookings_path, notice: '報名已經取消'
   end
 
@@ -29,7 +29,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking = current_user&.bookings&.find(params[:id])
-    current_user.logs.create!(log_type: 'browse_booked_show', timestamp: Time.current, booking: @booking)
+    current_user.logs.create!(type: 'browse_booked_show', booking: @booking)
   rescue ActiveRecord::RecordInvalid
     Rails.logger.error "browse booking show page log create failed, user id : #{current_user.id}"
   end

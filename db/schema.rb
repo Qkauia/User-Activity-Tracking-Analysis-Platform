@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_15_060747) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_15_132443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_060747) do
     t.string "location"
     t.integer "max_participants"
     t.string "organizer"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -46,8 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_060747) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "activity_id", null: false
-    t.datetime "booking_time"
-    t.string "booking_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "booker_name"
@@ -62,8 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_060747) do
     t.bigint "user_id", null: false
     t.bigint "activity_id"
     t.bigint "booking_id"
-    t.string "log_type"
-    t.datetime "timestamp"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["activity_id"], name: "index_logs_on_activity_id"

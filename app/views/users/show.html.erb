@@ -5,8 +5,11 @@
     <li>
       <p>
         <%= format_datetime(log.created_at) %>
-        【 <%= t("log_type.#{log.log_type}") %> 】
+        【 <%= t("type.#{log.type}") %> 】
       </p>
     </li>
   <% end %>
 </ul>
+
+<p>當日活耀使用者總數：<%= @daily_active_users_total %>位</p>
+<p>一週活耀使用者總數：<%= @weekly_active_users_total %>位</p>

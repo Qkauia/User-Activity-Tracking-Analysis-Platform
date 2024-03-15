@@ -21,7 +21,7 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
       },
       body: JSON.stringify({
-        log_type: "email_field_changed",
+        type: "email_field_changed",
         activity_id: activityId,
       }),
     }).then((response) => {
