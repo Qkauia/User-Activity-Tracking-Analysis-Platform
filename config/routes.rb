@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   resources :activities do
     resources :bookings, only: %i[create destroy]
   end
-  resources :bookings, only: [:index]
-  resources :logs
+  resources :bookings, only: %i[index show]
+  
+  post '/logs/create', to: 'logs#create'
 
   root 'activities#index'
 end

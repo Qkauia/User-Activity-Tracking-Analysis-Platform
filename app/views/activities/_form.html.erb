@@ -3,12 +3,12 @@
   <%= form_with(model: form, lacal: true, data: { turbo: false }) do |f| %>
     <div>
       <%= f.label :title, '活動標題' %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, placeholder: '請填寫活動標題' %>
     </div>
 
     <div>
-      <%= f.label :description, '活動簡單介紹' %>
-      <%= f.text_area :description %>
+      <%= f.label :description, '活動介紹' %>
+      <%= f.text_area :description, placeholder: '請填寫活動內容' %>
     </div>
 
     <div>
@@ -23,17 +23,17 @@
 
     <div>
       <%= f.label :location, '活動地點' %>
-      <%= f.text_field :location %>
+      <%= f.text_field :location, placeholder: '請填寫活動地點' %>
     </div>
 
     <div>
       <%= f.label :max_participants, '人數限制' %>
-      <%= f.number_field :max_participants %>
+      <%= f.number_field :max_participants, placeholder: '請填寫人數' %>
     </div>
 
     <div>
       <%= f.label :organizer, '活動單位' %>
-      <%= f.text_field :organizer %>
+      <%= f.text_field :organizer, placeholder: '請填寫活動單位' %>
     </div>
 
     <div>

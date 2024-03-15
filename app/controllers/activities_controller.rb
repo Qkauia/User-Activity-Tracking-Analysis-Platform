@@ -18,7 +18,9 @@ class ActivitiesController < ApplicationController
 
   def show
     @booking = Booking.new
-    current_user.logs.create!(log_type: 'activity_show', timestamp: Time.current, activity: @activity)
+    current_user&.logs&.create!(log_type: 'browse_activity_show', timestamp: Time.current, activity: @activity)
+    rescue ActiveRecord::RecordInvalid
+    Rails.logger.error "browse activity booking page log create failed, user id : #{current_user.id}"
   end
 
   def edit; end
@@ -38,6 +40,9 @@ class ActivitiesController < ApplicationController
 
   def index
     @activities = Activity.all
+    current_user&.logs&.create!(log_type: 'browse_root', timestamp: Time.current)
+    rescue ActiveRecord::RecordInvalid
+    Rails.logger.error "browse root page log create failed, user id : #{current_user.id}"
   end
 
   private
@@ -48,6 +53,6 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:title, :description, :start_time, :end_time, :location, :organizer, :status,
-                                     :max_participants)
+                                     :max_participants).merge(user: current_user)
   end
 end

@@ -3,11 +3,16 @@
     <%= f.hidden_field :activity_id, value: @activity.id %>
     <div>
       <%= f.label :booker_name, '報名者姓名：' %>
-      <%= f.text_field :booker_name %>
+      <%= f.text_field :booker_name, placeholder: '請輸入姓名' %>
     </div>
     <div>
       <%= f.label :booker_email, '報名者信箱' %>
-      <%= f.email_field :booker_email, placeholder: '報名者信箱' %>
+      <%= f.email_field :booker_email, placeholder: '請輸入Email', 
+                          data: { 
+                            controller: "email-tracking",
+                            action: "input->email-tracking#trackEmailInput",
+                            email_tracking_target: "email",
+                            email_tracking_activity_id_value: @activity.id } %>
     </div>
     <%= f.submit '參加活動' %>
   <% end %>

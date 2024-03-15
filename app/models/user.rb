@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :logs
   has_many :bookings
+  has_many :activities
 
   def already_booked?(activity)
     bookings.where(activity_id: activity.id).exists?
