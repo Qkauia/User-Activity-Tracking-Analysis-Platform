@@ -5,9 +5,11 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new
+    authorize @activity
   end
 
   def create
+    authorize @activity
     @activity = Activity.new(activity_params)
     if @activity.save
       redirect_to activities_path, notice: '活動建立成功'
@@ -23,9 +25,12 @@ class ActivitiesController < ApplicationController
     Rails.logger.error "browse activity booking page log create failed, user id : #{current_user.id}"
   end
 
-  def edit; end
+  def edit
+    authorize @activity
+  end
 
   def update
+    authorize @activity
     if @activity.update(activity_params)
       redirect_to activity_path(@activity), notice: '活動更新成功'
     else
@@ -34,6 +39,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
+    authorize @activity
     @activity.destroy
     redirect_to activities_path, notice: '活動已經刪除'
   end
