@@ -12,3 +12,4 @@ every :sunday, at: '4:30 am' do
   runner "CleanOldLogsJob.perform_later"
 end
 
+#  bundle exec sidekiq

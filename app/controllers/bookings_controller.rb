@@ -9,8 +9,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to root_path, notice: '參加成功'
       current_user.logs.create!(type: 'submitted', booking: @booking, activity: )
-      # SummaryMailer.send_daily_summary
-      # SummaryMailer.send_weekly_summary
+      SummaryMailer.send_daily_summaries
+      SummaryMailer.send_weekly_summaries
     else
       redirect_to activity_path(activity), alert: '請確實填寫資料'
     end
