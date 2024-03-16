@@ -8,4 +8,54 @@ class Log < ApplicationRecord
   belongs_to :activity, optional: true
   belongs_to :booking, optional: true
 
+  # 期間使用者活耀總數
+  def self.date_range_active_users_total(start_date)
+    where(created_at: start_date..Time.zone.today.end_of_day).distinct.count(:user_id)
+  end
+  
+  # 期間使用者預約總數
+  def self.booking_total_count(start_date)
+    booking_total_count = 0
+    
+    where(created_at: start_date..Time.zone.today.end_of_day)
+    .find_each do |log|
+      if log.type == 'submitted'
+        booking_total_count += 1
+      elsif log.type == 'cancel_booking'
+        booking_total_count -= 1
+      end
+    end
+    booking_total_count
+  end
+  
+  # # 計算平均時間（確保有時間被記錄）
+  def self.booking_duration(start_date = Time.zone.today.beginning_of_day)
+    all_logs = where(type: ["browse_activity_show", "submitted"], created_at: start_date..Time.zone.today.end_of_day).order(:created_at)
+    # 資料分組
+    preview_logs = all_logs.select { |log| log.type == "browse_activity_show" }
+    submit_logs = all_logs.select { |log| log.type == "submitted" }
+    # 創建新HASH(key對應id,value對應submit_logs Hash)
+    new_submit_logs = submit_logs.index_by(&:id)
+    # filter_map 結合了 filter 和 select 跟 map 的功能，回傳符合條件的值帶入新陣列
+    durations = preview_logs.filter_map do |preview_log|
+      # # 找出new_submit_logs 的key(id)是否跟有預期 +2 
+      expected_submit_log_id = preview_log.id + 2
+      submit_log = new_submit_logs[expected_submit_log_id]
+      submit_log ? submit_log.created_at - preview_log.created_at : nil
+    end
+    durations
+  end
+
+  # 平均時長
+  def self.average_duration(durations)
+    return nil if durations.empty?
+    (durations.sum / durations.size / 60 ).round(2)
+  end
+  
+  # 最長時間篩選
+  def self.longest_duration(durations)
+    return nil if durations.empty?
+    (durations.sort.last.round(2) / 60 ).round(2)
+  end
+
 end

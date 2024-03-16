@@ -1,0 +1,20 @@
+<p>每日活耀使用者總數：共 <%= @daily_active_users_total %> 位</p>
+<p>每週活耀使用者總數：共 <%= @weekly_active_users_total %> 位</p>
+<p>每日活動報名總數：共 <%= @daily_booker_total %> 筆</p>
+<p>每週活動報名總數：共 <%= @daily_booker_total %> 筆</p>
+
+<% if @average_duration %>
+  <p>
+    今日平均使用者預約所花費時間： <%= @average_duration %> 分鐘 (<%= (@average_duration * 60 ).round(2) %> 秒)
+  </p>
+<% else %>
+  <p>今日尚未有人預約</p>
+<% end %>
+
+<% if @longest_duration %>
+  <p>
+    今日最長預約花費時間： <%=  @longest_duration %> 分鐘 (<%=  @longest_duration * 60 %> 秒)
+  </p>
+<% else %>
+  <p>今日尚未有人預約</p>
+<% end %>

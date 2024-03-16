@@ -1,5 +1,5 @@
 <h1>使用者活動詳情</h1>
-
+<%= render 'dashboard' %>
 <ul>
   <% @logs.each do |log| %>
     <li>
@@ -10,6 +10,3 @@
     </li>
   <% end %>
 </ul>
-
-<p>當日活耀使用者總數：<%= @daily_active_users_total %>位</p>
-<p>一週活耀使用者總數：<%= @weekly_active_users_total %>位</p>
