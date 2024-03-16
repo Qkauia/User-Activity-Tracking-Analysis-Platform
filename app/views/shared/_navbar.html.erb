@@ -1,4 +1,9 @@
 <nav class="flex items-center">
+  <% if user_signed_in? %>
+    <div class="px-2 mx-2 flex justify-end">
+      <h3><span class='text-sm font-bold hover:text-green-700'><%= "#{current_user.name} (#{current_user.email})" %></span></h3>
+    </div>
+  <% end %>
   <%= link_to '學習王', root_path, class: "px-2 mx-2 text-3xl font-bold hover:text-green-700" %>
   <% if user_signed_in? %>
     <div class="px-2 mx-2">

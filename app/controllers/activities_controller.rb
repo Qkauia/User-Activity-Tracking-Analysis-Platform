@@ -2,7 +2,7 @@
 
 class ActivitiesController < ApplicationController
   before_action :find_activity, only: %i[show edit update destroy]
-
+  
   def new
     @activity = Activity.new
     authorize @activity
