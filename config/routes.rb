@@ -1,13 +1,21 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  require 'sidekiq/web'
 
   devise_for :admins
-  devise_for :users, controllers: {
+  devise_for :users,
+    controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
+
+  # Admin constraint for Sidekiq Web UI
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   resources :users, only: %i[index show]
   
   resources :activities do

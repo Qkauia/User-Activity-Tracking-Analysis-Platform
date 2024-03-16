@@ -88,3 +88,6 @@ gem 'paranoia', '~> 2.6'
 gem 'whenever', require: false
 
 gem 'pundit'
+
+gem 'sidekiq'
+
