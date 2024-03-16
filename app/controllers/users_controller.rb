@@ -9,16 +9,16 @@ class UsersController < ApplicationController
     @logs = @user.logs.order(created_at: :desc)
     authorize @user
     
-    daily_start_date = Time.zone.today.beginning_of_day
-    weekly_start_date = Date.today.beginning_of_week(:sunday)
+    daily_date_range = Time.zone.today.beginning_of_day..Time.zone.today.end_of_day
+    weekly_date_range = Date.today.beginning_of_week(:sunday)..Time.zone.today.end_of_day
 
-    @daily_active_users_total =  Log.date_range_active_users_total(daily_start_date)
-    @weekly_active_users_total =  Log.date_range_active_users_total(weekly_start_date)
+    @daily_active_users_total =  Log.date_range_active_users_total(daily_date_range)
+    @weekly_active_users_total =  Log.date_range_active_users_total(weekly_date_range)
 
-    @daily_booker_total = Log.booking_total_count(daily_start_date)
-    @weekly_booker_total = Log.booking_total_count(weekly_start_date)
+    @daily_booker_total = Log.booking_total_count(daily_date_range)
+    @weekly_booker_total = Log.booking_total_count(weekly_date_range)
 
-    booking_durations = Log.booking_duration(daily_start_date)
+    booking_durations = Log.booking_duration(daily_date_range)
     @average_duration = Log.average_duration(booking_durations)
     @longest_duration = Log.longest_duration(booking_durations)
 

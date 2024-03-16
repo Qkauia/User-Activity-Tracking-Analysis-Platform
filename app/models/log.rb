@@ -9,15 +9,15 @@ class Log < ApplicationRecord
   belongs_to :booking, optional: true
 
   # 期間使用者活耀總數
-  def self.date_range_active_users_total(start_date)
-    where(created_at: start_date..Time.zone.today.end_of_day).distinct.count(:user_id)
+  def self.date_range_active_users_total(date_range)
+    where(created_at: date_range).distinct.count(:user_id)
   end
   
   # 期間使用者預約總數
-  def self.booking_total_count(start_date)
+  def self.booking_total_count(date_range)
     booking_total_count = 0
     
-    where(created_at: start_date..Time.zone.today.end_of_day)
+    where(created_at: date_range )
     .find_each do |log|
       if log.type == 'submitted'
         booking_total_count += 1
@@ -29,8 +29,8 @@ class Log < ApplicationRecord
   end
   
   # # 計算平均時間（確保有時間被記錄）
-  def self.booking_duration(start_date = Time.zone.today.beginning_of_day)
-    all_logs = where(type: ["browse_activity_show", "submitted"], created_at: start_date..Time.zone.today.end_of_day).order(:created_at)
+  def self.booking_duration(date_range)
+    all_logs = where(type: ["browse_activity_show", "submitted"], created_at: date_range ).order(:created_at)
     # 資料分組
     preview_logs = all_logs.select { |log| log.type == "browse_activity_show" }
     submit_logs = all_logs.select { |log| log.type == "submitted" }

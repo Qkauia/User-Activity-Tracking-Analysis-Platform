@@ -19,15 +19,6 @@ class Activity < ApplicationRecord
     return unless end_time <= start_time
 
     errors.add(:end_time, '必須晚於開始時間')
-  end
-
-  # def has_space?(activity)
-  #   activity.bookings.count < max_participants
-  # end
-
-  # def open_for_booking?
-  #   start_time > Time.zone.now
-  # end
-  
+  end  
   
 end
