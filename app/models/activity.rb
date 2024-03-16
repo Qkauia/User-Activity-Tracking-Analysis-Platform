@@ -5,6 +5,7 @@ class Activity < ApplicationRecord
   belongs_to :user
   has_many :bookings
   has_many :logs
+  
 
   validates :title, :description, :start_time, :end_time, :location, :organizer, presence: true
   validates :max_participants, presence: true, numericality: { greater_than: 5, only_integer: true }
@@ -19,4 +20,14 @@ class Activity < ApplicationRecord
 
     errors.add(:end_time, '必須晚於開始時間')
   end
+
+  # def has_space?(activity)
+  #   activity.bookings.count < max_participants
+  # end
+
+  # def open_for_booking?
+  #   start_time > Time.zone.now
+  # end
+  
+  
 end

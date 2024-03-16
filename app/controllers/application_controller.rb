@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
+  def has_space?(activity)
+    activity.bookings.count < activity.max_participants
+  end
+
+  def open_for_booking?(activity)
+    activity.start_time > Time.zone.now
+  end
+
   private
 
   def not_found
@@ -14,8 +22,6 @@ class ApplicationController < ActionController::Base
            status: 404,
            layout: false
   end
-
-  private
 
   def user_not_authorized
     flash[:alert] = "你沒有權限"
