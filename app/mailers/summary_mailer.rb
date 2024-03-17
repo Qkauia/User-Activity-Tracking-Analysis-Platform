@@ -29,8 +29,8 @@ class SummaryMailer < ApplicationMailer
     @daily_date_range = Time.zone.yesterday.beginning_of_day..Time.zone.yesterday.end_of_day
     @weekly_date_range = 1.week.ago.beginning_of_week(:sunday)..Time.zone.yesterday.end_of_day
 
-    @daily_active_users_total =  Log.date_range_active_users_total(@daily_date_range)
-    @weekly_active_users_total =  Log.date_range_active_users_total(@weekly_date_range)
+    @daily_active_users_total = Log.date_range_active_users_total(@daily_date_range)
+    @weekly_active_users_total = Log.date_range_active_users_total(@weekly_date_range)
 
     @daily_booker_total = Log.booking_total_count(@daily_date_range)
     @weekly_booker_total = Log.booking_total_count(@weekly_date_range)
@@ -39,5 +39,4 @@ class SummaryMailer < ApplicationMailer
     @average_duration = Log.average_duration(@booking_durations)
     @longest_duration = Log.longest_duration(@booking_durations)
   end
-
 end

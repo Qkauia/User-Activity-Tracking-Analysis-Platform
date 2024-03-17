@@ -4,19 +4,17 @@ class BookingsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    
     ActiveRecord::Base.transaction do
       @activity = Activity.find(params[:activity_id])
       if has_space?(@activity) && open_for_booking?(@activity)
         @booking = @activity.bookings.new(booking_params.merge(user: current_user))
-        if @booking.save
-          current_user.logs.create!(type: 'submitted', booking: @booking, activity: @activity)
-          # SummaryMailer.send_daily_summaries
-          # SummaryMailer.send_weekly_summaries
-          redirect_to @activity, notice: '報名成功'
-        else
-          raise ActiveRecord::Rollback, '請確實填寫資料'
-        end
+        raise ActiveRecord::Rollback, '請確實填寫資料' unless @booking.save
+
+        current_user.logs.create!(type: 'submitted', booking: @booking, activity: @activity)
+        # SummaryMailer.send_daily_summaries
+        # SummaryMailer.send_weekly_summaries
+        redirect_to @activity, notice: '報名成功'
+
       else
         redirect_to root_path, alert: '時間已經超過了'
         raise ActiveRecord::Rollback
@@ -26,7 +24,7 @@ class BookingsController < ApplicationController
     # 有錯誤訊息就顯示
     redirect_to @activity, alert: e.message.presence || '無法完成報名'
   end
-  
+
   def destroy
     @booking = current_user&.bookings&.find(params[:id])
     @booking.destroy

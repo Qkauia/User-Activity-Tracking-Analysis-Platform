@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationPolicy
   attr_reader :user, :activity, :record
 
@@ -6,5 +8,4 @@ class ApplicationPolicy
     @activity = activity
     @record = record
   end
-
 end

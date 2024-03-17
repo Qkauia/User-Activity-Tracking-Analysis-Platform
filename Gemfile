@@ -90,4 +90,3 @@ gem 'whenever', require: false
 gem 'pundit'
 
 gem 'sidekiq'
-

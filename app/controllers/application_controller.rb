@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    flash[:alert] = "你沒有權限"
+    flash[:alert] = '你沒有權限'
     redirect_to root_path
   end
 

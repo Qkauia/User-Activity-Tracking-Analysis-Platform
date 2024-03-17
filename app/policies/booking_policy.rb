@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class BookingPolicy < ApplicationPolicy
-  
   def create?
     user.present?
   end
@@ -11,5 +12,4 @@ class BookingPolicy < ApplicationPolicy
   def destroy?
     booking.present? && user.id == booking.user_id
   end
-
 end

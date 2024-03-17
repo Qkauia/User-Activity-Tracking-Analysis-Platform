@@ -1,5 +1,6 @@
-class ActivityPolicy < ApplicationPolicy
+# frozen_string_literal: true
 
+class ActivityPolicy < ApplicationPolicy
   def new?
     user.present?
   end
@@ -27,5 +28,4 @@ class ActivityPolicy < ApplicationPolicy
   def index?
     true
   end
-
 end

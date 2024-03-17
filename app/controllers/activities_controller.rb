@@ -2,7 +2,7 @@
 
 class ActivitiesController < ApplicationController
   before_action :find_activity, only: %i[show edit update destroy]
-  
+
   def new
     @activity = Activity.new
     authorize @activity
@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
   def show
     @booking = Booking.new
     current_user&.logs&.create!(type: 'browse_activity_show', activity: @activity)
-    rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid
     Rails.logger.error "browse activity booking page log create failed, user id : #{current_user.id}"
   end
 
@@ -47,7 +47,7 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
     current_user&.logs&.create!(type: 'browse_root')
-    rescue ActiveRecord::RecordInvalid
+  rescue ActiveRecord::RecordInvalid
     Rails.logger.error "browse root page log create failed, user id : #{current_user.id}"
   end
 
