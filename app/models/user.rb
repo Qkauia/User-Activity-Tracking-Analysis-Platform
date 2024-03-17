@@ -16,7 +16,4 @@ class User < ApplicationRecord
     bookings.where(activity_id: activity.id).exists?
   end
 
-  # def self.admin_email
-  #   find_by(admin: true)&.email
-  # end
 end

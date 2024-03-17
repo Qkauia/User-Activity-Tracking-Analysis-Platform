@@ -55,7 +55,6 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.8'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -73,6 +72,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner-active_record'
 end
 
 gem 'rubocop', '~> 1.59', require: false
