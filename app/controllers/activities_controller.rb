@@ -9,8 +9,8 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    authorize @activity
     @activity = Activity.new(activity_params)
+    authorize @activity
     if @activity.save
       redirect_to activities_path, notice: '活動建立成功'
     else

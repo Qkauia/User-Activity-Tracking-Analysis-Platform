@@ -14,12 +14,12 @@
                           <p class="text-gray-600 mt-2">親愛的 系統管理員</p>
                           <p class="text-gray-600 mt-2">以下是過去 24 小時內的活動摘要：</p>
                           <ul class="list-disc list-inside mt-2">
-                              <li>每日活耀使用者總數：共 <%= @daily_active_users_total %> 位</li>
-                              <li>每日活動報名總數：共 <%= @daily_booker_total %> 筆</li>
+                              <li>昨日<%= @yesterday %>活耀使用者總數：共 <%= @daily_active_users_total %> 位</li><%= %>
+                              <li>昨日<%= @yesterday %>活動報名總數：共 <%= @daily_booker_total %> 筆</li>
                               <li>
                                 <% if @average_duration %>
                                   <p>
-                                    今日平均使用者預約所花費時間： <%= @average_duration %> 分鐘 (<%= (@average_duration * 60 ).round(2) %> 秒)
+                                    <li>昨日<%= @yesterday %>平均使用者預約所花費時間： <%= @average_duration %> 分鐘 (<%= (@average_duration * 60 ).round(2) %> 秒)
                                   </p>
                                 <% else %>
                                   <p>今日尚未有人預約</p>
@@ -28,7 +28,7 @@
                               <li>
                                 <% if @longest_duration %>
                                   <p>
-                                    今日最長預約花費時間： <%=  @longest_duration %> 分鐘 (<%=  @longest_duration * 60 %> 秒)
+                                    <li>昨日<%= @yesterday %>最長預約花費時間： <%=  @longest_duration %> 分鐘 (<%=  @longest_duration * 60 %> 秒)
                                   </p>
                                 <% else %>
                                   <p>今日尚未有人預約</p>
