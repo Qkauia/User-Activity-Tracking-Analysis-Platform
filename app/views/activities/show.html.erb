@@ -1,18 +1,15 @@
 <h1>活動資訊</h1>
-<div>
-  <%= link_to '修改活動',edit_activity_path(@activity) %>
-</div>
-<div>
-  <%= link_to '刪除活動',activity_path(@activity), data: { turbo_method: 'delete', turbo_confirm: '確定要刪除嗎？'  } %>
-</div>
-<article>
-  <h2>活動主題：<%= @activity.title %></h2>
-  <h3>主辦單位：<%= @activity.organizer %></h3>
-  <h4>活動地點：<%= @activity.location %></h4>
-  <div>報名人數：<%= @activity.bookings.count %> / <%= @activity.max_participants %></div>
-  <div>開始時間：<%= format_datetime(@activity.start_time) %> － 結束時間：<%= format_datetime(@activity.end_time) %></div>
-  <p>詳細內容：<%= @activity.description %></p>
-</article>
+<% if policy(@activity).update? %>
+  <div>
+    <%= link_to '修改活動內容', edit_activity_path(@activity) %>
+  </div>
+<% end %>
+<% if policy(@activity).destroy? %>
+  <div>
+    <%= link_to '刪除活動',activity_path(@activity), data: { turbo_method: 'delete', turbo_confirm: '確定要刪除嗎？'  } %>
+  </div>
+<% end %>
+<%= render 'shared/activity_info', resources: @activity %>
 <div>
   <%= render 'bookings/form', booking: @booking, activity: @activity %>
 </div>

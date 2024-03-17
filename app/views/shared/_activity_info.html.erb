@@ -1,0 +1,9 @@
+<article>
+  <h2>活動主題：<%= resources.title %></h2>
+  <h3>主辦單位：<%= resources.organizer %></h3>
+  <p>主辦人：<%= resources.user.name %></p>
+  <h4>活動地點：<%= resources.location %></h4>
+  <div>報名人數：<%= resources.bookings.count %> / <%= resources.max_participants %></div>
+  <div>開始時間：<%= format_datetime(resources.start_time) %> － 結束時間：<%= format_datetime(resources.end_time) %></div>
+  <p>詳細內容：<%= resources.description %></p>
+</article>

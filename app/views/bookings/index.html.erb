@@ -1,11 +1,17 @@
-<h1>以報名的活動</h1>
-<article>
-  <% @bookings.each do |booking| %>
-    <%= link_to booking_path(booking) do %>
-      <h2>活動標題：<%=  booking.activity.title %></h2>
-      <p>活動簡介：<%= booking.activity.description %></p>
-      <div>活動時間：<%= booking.activity.start_time %></div>
-      <div>活動地點：<%= booking.activity.location %></div>
+<h1>已報名的活動</h1>
+<% if current_user.bookings.exists? %>
+  <% current_user.bookings.each do |booking| %>
+    <% if booking.activity.present? %>
+      <%= link_to booking_path(booking) do %>
+        <h2>活動標題：<%= booking.activity.title %></h2>
+        <p>活動簡介：<%= booking.activity.description %></p>
+        <div>活動時間：<%= booking.activity.start_time %></div>
+        <div>活動地點：<%= booking.activity.location %></div>
+      <% end %>
+    <% else %>
+      <p>某些預訂的活動未找到或已被刪除。</p>
     <% end %>
   <% end %>
-</article>
+<% else %>
+  <p>沒有找到已預訂的活動。</p>
+<% end %>

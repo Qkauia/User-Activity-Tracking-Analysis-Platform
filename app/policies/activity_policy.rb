@@ -1,7 +1,7 @@
 class ActivityPolicy < ApplicationPolicy
 
   def new?
-    user&.present?
+    user.present?
   end
 
   def create?
@@ -13,15 +13,15 @@ class ActivityPolicy < ApplicationPolicy
   end
 
   def edit?
-    create?
+    activity.present? && user.id == activity.user_id
   end
 
   def update?
-    edit?
+    activity.present? && user.id == activity.user_id
   end
 
   def destroy?
-    update?
+    activity.present? && user.id == activity.user_id
   end
 
   def index?
