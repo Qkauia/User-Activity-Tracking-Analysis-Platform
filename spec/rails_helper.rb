@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'database_cleaner/active_record'
+require 'pundit/rspec'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -72,7 +73,9 @@ RSpec.configure do |config|
   #
   # The different available types are documented in the features, such as in
   # https://rspec.info/features/6-0/rspec-rails
-  config.infer_spec_type_from_file_location!
+  RSpec.configure do |config|
+    config.infer_spec_type_from_file_location!
+  end
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!

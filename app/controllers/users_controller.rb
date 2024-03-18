@@ -3,6 +3,10 @@
 class UsersController < ApplicationController
   def index
     @users = User.includes(:logs).all.sort_by { |user| user.logs.last&.created_at || Time.current }.reverse
+    respond_to do |format|
+      format.html 
+      format.json { render json: @users } 
+    end
   end
 
   def show
