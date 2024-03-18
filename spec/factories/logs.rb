@@ -3,6 +3,12 @@ FactoryBot.define do
     user
     activity
     booking
-    type { "訪問頁面" }
+    type { "預訂送出" }
+    # after(:create) do |log|
+    #   users = create_list(:user, 10)
+    #   activity = create(:activity, user: users.first)
+    #   booking = create(:booking, user: users.second, activity: activity)
+    #   create(:log, booking: booking, type: "預訂送出")
+    # end
   end
 end
