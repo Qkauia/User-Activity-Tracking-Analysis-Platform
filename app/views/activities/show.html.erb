@@ -1,10 +1,10 @@
 <h1>活動資訊</h1>
-<% if policy(@activity).update? %>
+<% if policy(@activity).update? && user_signed_in? %>
   <div>
     <%= link_to '修改活動內容', edit_activity_path(@activity) %>
   </div>
 <% end %>
-<% if policy(@activity).destroy? %>
+<% if policy(@activity).destroy? && user_signed_in? %>
   <div>
     <%= link_to '刪除活動',activity_path(@activity), data: { turbo_method: 'delete', turbo_confirm: '確定要刪除嗎？'  } %>
   </div>

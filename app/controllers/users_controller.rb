@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     authorize @user
 
     daily_date_range = Time.zone.today.beginning_of_day..Time.zone.today.end_of_day
-    weekly_date_range = Date.today.beginning_of_week(:sunday)..Time.zone.today.end_of_day
+    weekly_date_range = Time.zone.today.beginning_of_week(:sunday)..Time.zone.today.end_of_day
 
     @daily_active_users_total = Log.date_range_active_users_total(daily_date_range)
     @weekly_active_users_total = Log.date_range_active_users_total(weekly_date_range)

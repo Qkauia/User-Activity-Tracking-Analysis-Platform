@@ -14,15 +14,15 @@ class ActivityPolicy < ApplicationPolicy
   end
 
   def edit?
-    activity.present? && user.id == activity.user_id
+    user.admin? || user.id == activity.user_id
   end
 
   def update?
-    activity.present? && user.id == activity.user_id
+    user.admin? || user.id == activity.user_id
   end
 
   def destroy?
-    activity.present? && user.id == activity.user_id
+    user.admin? || user.id == activity.user_id
   end
 
   def index?

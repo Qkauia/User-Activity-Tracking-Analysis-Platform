@@ -28,7 +28,7 @@ class Log < ApplicationRecord
     booking_total_count
   end
 
-  # # 計算平均時間（確保有時間被記錄）
+  # 計算預約花費時間
   def self.booking_duration(date_range)
     all_logs = where(type: %w[browse_activity_show submitted], created_at: date_range).order(:created_at)
     # 資料分組
@@ -58,4 +58,5 @@ class Log < ApplicationRecord
 
     (durations.max.round(2) / 60).round(2)
   end
+  
 end
