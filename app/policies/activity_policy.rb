@@ -14,15 +14,15 @@ class ActivityPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? || user.id == activity.user_id
+    user == record.user
   end
 
   def update?
-    user.admin? || user.id == activity.user_id
+    edit?
   end
 
   def destroy?
-    user.admin? || user.id == activity.user_id
+    update?
   end
 
   def index?

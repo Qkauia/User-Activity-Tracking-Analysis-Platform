@@ -12,7 +12,6 @@ class BookingsController < ApplicationController
 
         current_user.logs.create!(type: 'submitted', booking: @booking, activity: @activity)
         # SummaryMailer.send_daily_summaries
-        # SummaryMailer.send_weekly_summaries
         redirect_to @activity, notice: '報名成功'
 
       else
