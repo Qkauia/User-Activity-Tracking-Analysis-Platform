@@ -311,6 +311,11 @@ caniuse-lite@^1.0.30001587, caniuse-lite@^1.0.30001591:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001597.tgz#8be94a8c1d679de23b22fbd944232aa1321639e6"
   integrity sha512-7LjJvmQU6Sj7bL0j5b5WY/3n7utXUJvAe1lxhsHDbLmwX9mdL86Yjtr+5SRCyf8qME4M7pU2hswj0FpyBVCv9w==
 
+capybara@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/capybara/-/capybara-0.1.2.tgz#bd2544940c3e29b8a1ced2ba5659e96ba57a0b05"
+  integrity sha512-c8MdwiWnbhvdIMepuySx7Vq60KcFWLdFKjJf61hGz+oAG/4MYFk5w+OyaMtjBbRvVGA13advTUTtU1kaS7FJmA==
+
 chokidar@^3.5.3:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.6.0.tgz#197c6cc669ef2a8dc5e7b4d97ee4e092c3eb0d5b"
