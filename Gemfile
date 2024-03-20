@@ -70,17 +70,16 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'database_cleaner-active_record'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 gem 'rubocop', '~> 1.59', require: false
 
 gem 'faker', '~> 3.2'
-
-gem 'aasm'
 
 gem 'devise'
 

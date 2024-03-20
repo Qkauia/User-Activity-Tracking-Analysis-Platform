@@ -4,11 +4,12 @@ require 'database_cleaner/active_record'
 require 'pundit/rspec'
 
 ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort("The Rails environment is running in production mode!") unless Rails.env.test?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -39,6 +40,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
   end
+  
 
   config.before(:each) do
     DatabaseCleaner.start
@@ -71,11 +73,11 @@ RSpec.configure do |config|
   #       # ...
   #     end
   #
+  # devise
+  config.include Devise::Test::IntegrationHelpers, type: :feature
   # The different available types are documented in the features, such as in
   # https://rspec.info/features/6-0/rspec-rails
-  RSpec.configure do |config|
-    config.infer_spec_type_from_file_location!
-  end
+  config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
