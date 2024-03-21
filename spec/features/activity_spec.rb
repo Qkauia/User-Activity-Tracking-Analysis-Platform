@@ -60,7 +60,7 @@ RSpec.feature "Activity feature", type: :feature do
       expect(page).to have_content('You need to sign in or sign up before continuing.')
     end
 
-    scenario "如果使用者是擁有activity" do
+    scenario "if User have activity" do
       
       FactoryBot.create(:booking, activity: activity, user: user)
   
