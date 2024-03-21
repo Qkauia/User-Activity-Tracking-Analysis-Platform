@@ -32,6 +32,7 @@ gem 'cssbundling-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
+# 內存數據庫
 gem 'redis', '>= 4.0.1'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -52,8 +53,11 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+  # 環境變數管理
   gem 'dotenv-rails', '~> 2.8'
+  # 測試資料動態創建
   gem 'factory_bot_rails'
+  # 測試框架
   gem 'rspec-rails'
 end
 
@@ -71,22 +75,26 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'selenium-webdriver'
+  # 測試語法簡潔化工具
   gem 'shoulda-matchers'
+  # 開發資料清理
   gem 'database_cleaner-active_record'
+  # 測試畫面預覽
   gem 'capybara'
+  # 輔助開發、啟動應用或者打開文件、URL
   gem 'launchy'
 end
-
+# 機器人
 gem 'rubocop', '~> 1.59', require: false
-
+# 假資料
 gem 'faker', '~> 3.2'
-
+# 會員
 gem 'devise'
-
+# 軟刪除
 gem 'paranoia', '~> 2.6'
-
+# 定時任務轉換cron語法
 gem 'whenever', require: false
-
+# 權限設定
 gem 'pundit'
-
+# 背景工作排程
 gem 'sidekiq'

@@ -48,15 +48,30 @@ class Log < ApplicationRecord
   # 平均時長
   def self.average_duration(durations)
     return nil if durations.empty?
-
     (durations.sum / durations.size / 60).round(2)
   end
 
   # 最長時間篩選
   def self.longest_duration(durations)
     return nil if durations.empty?
-
-    (durations.max.round(2) / 60).round(2)
+    (durations.max / 60).round(2)
   end
+  
+  # 99%用戶booking操作時長
+  def self.user_99th_percentile_duration(durations)
+    return nil if durations.empty?
+    sorted_durations = durations.sort
+    index_99th = (sorted_durations.length * 0.99).floor - 1
+    duration_in_min = sorted_durations[index_99th]
+    (duration_in_min / 60 ).round(2)
+  end
+
+  # 使用 gem 'descriptive_statistics'
+  # def self.user_99th_percentile_duration(durations)
+  #   return nil if durations.empty?
+  #   durations.extend(DescriptiveStatistics)
+  #   percentile_99_duration = durations.percentile(99)
+  #   (percentile_99_duration / 60).round(2)
+  # end
   
 end

@@ -26,5 +26,7 @@ class UsersController < ApplicationController
     booking_durations = Log.booking_duration(daily_date_range)
     @average_duration = Log.average_duration(booking_durations)
     @longest_duration = Log.longest_duration(booking_durations)
+    
+    @percentile_99_duration = Log.user_99th_percentile_duration(booking_durations)
   end
 end
