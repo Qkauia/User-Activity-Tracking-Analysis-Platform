@@ -138,6 +138,7 @@ RSpec.feature "User feature", type: :feature do
     let!(:booking_durations) { Log.booking_duration(daily_date_range) }
     let!(:average_duration) { Log.average_duration(booking_durations) }
     let!(:longest_duration) { Log.longest_duration(booking_durations) }
+    let!(:percentile_99_duration) { Log.user_99th_percentile_duration(booking_durations) }
     
     let!(:average_seconds) { (average_duration * 60).round(2) }
     let!(:longest_seconds) { (longest_duration * 60).round(2) }
@@ -161,7 +162,7 @@ RSpec.feature "User feature", type: :feature do
       expect(page).to have_content("當週活動報名總數：共 #{weekly_booking_total} 筆")
       expect(page).to have_content("當日平均使用者預約所花費時間： #{average_duration} 分鐘 (#{average_seconds} 秒)")
       expect(page).to have_content("當日最長預約花費時間： #{longest_duration} 分鐘 (#{longest_seconds} 秒)")
-
+      expect(page).to have_content("99%的用戶預約所花費時間 ： #{percentile_99_duration} 分鐘 (#{( percentile_99_duration * 60).round(2)} 秒)內")
       logs.each do |log|
         type_translation = I18n.t("type.#{log.type}")
         expect(page).to have_content(log.created_at.strftime('%Y 年 %m 月 %d 日 %H 點 %M 分 '))
