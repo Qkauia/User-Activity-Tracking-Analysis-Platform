@@ -1,24 +1,96 @@
-# README
+# 活動預約與報名系統
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+這是一個簡潔的 Web 應用，允許使用者註冊後創建和報名各種活動。該系統旨在為社區、教育機構和公司提供一個平台，方便地組織課堂講座、公司聚會和其他各種規模的活動。系統提供活動創建、報名管理和管理者權限功能，以及動態追蹤使用者互動。
 
-Things you may want to cover:
+## 環境設定
 
-* Ruby version
+請按照以下步驟配置您的開發環境：
 
-* System dependencies
+1. 將 `env.template` 檔案重命名為 `.env`設定環境變數。
+2. 執行 `bundle install` 和 `yarn install` 安裝依賴。
+3. 執行 `rails db:setup` 來設置資料庫。
+4. 執行 `bin/dev` 啟動開發伺服器，並訪問 [http://localhost:3000](http://localhost:3000) 查看。
 
-* Configuration
+## 網站介紹
 
-* Database creation
+### 活動創立
 
-* Database initialization
+- 使用者註冊後可以自由創立活動，如課堂講座、公司聚會等。
+- 創立條件：參加人數必須達五人以上。
+- 必須輸入正確的開始和結束時間，結束時間必須大於開始時間。
 
-* How to run the test suite
+### 活動報名
 
-* Services (job queues, cache servers, search engines, etc.)
+- 每個帳號限報名一人。
+- 報名人數額滿則無法報名。
+- 過期活動不能報名。
+- 名額剩一位時，系統嚴格控制不會超額。
 
-* Deployment instructions
+### 管理者權限
 
-* ...
+#### 信件通知
+
+- 每日摘要：記錄前一日活躍使用者數、報名活動人數及預約操作分析。
+- 每週摘要：記錄前一週的活躍使用者數和報名人數。
+
+#### 動態追蹤
+
+- 頁面瀏覽追蹤：首頁、活動預約頁面、報名資訊頁面。
+- 使用者活動追蹤：註冊、登入、登出、更改密碼。
+- 預約追蹤：表單填寫、提交表單。
+
+## 使用技術
+
+### 前端技術
+
+- Tailwind CSS
+- Stimulus
+
+### 後端技術
+
+- Ruby
+- Ruby on Rails
+
+## 項目依賴
+
+本項目使用了以下 Ruby gems 來支持其功能：
+
+### 全局依賴
+
+- **`rubocop` (~> 1.59)**: 靜態代碼分析器和格式化工具，幫助保持代碼的一致性和質量。
+- **`faker` (~> 3.2)**: 用於生成假數據，適合開發和測試環境中產生真實感的示例數據。
+- **`devise`**: 提供完整的會員系統解決方案，包括用戶註冊、登入、登出等功能。
+- **`paranoia` (~> 2.6)**: 提供 ActiveRecord 模型的軟刪除功能，允許記錄被隱藏而不是完全刪除。
+- **`whenever`**: 允許將 Ruby 代碼轉換成 cron 任務，簡化定時任務的管理。
+- **`pundit`**: 提供簡潔的權限控制方式，通過策略對象管理權限。
+- **`sidekiq`**: 強大的背景處理工具，用於執行背景任務，如發送電子郵件、定時任務等。
+
+### 開發和測試環境依賴
+
+- **`debug`**: 提供調試功能，支持 MRI 和 Windows 平台。
+- **`dotenv-rails` (~> 2.8)**: 管理環境變數，將配置存儲在 `.env` 文件中。
+- **`factory_bot_rails`**: 提供在測試中快速創建數據模型實例的方法。
+- **`rspec-rails`**: 提供測試框架，支持行為驅動開發 (BDD)。
+
+### 僅開發環境依賴
+
+- **`web-console`**: 在錯誤頁面提供互動式的 Ruby 控制台，便於調試。
+
+### 僅測試環境依賴
+
+- **`selenium-webdriver`**: 支持系統測試，允許自動運行測試。
+- **`shoulda-matchers`**: 提供簡潔的語法來測試 Rails 功能。
+- **`database_cleaner-active_record`**: 清理數據庫，確保測試環境的清潔。
+- **`capybara`**: 用於功能測試，模擬用戶與 Web 應用的互動。
+- **`launchy`**: 幫助在測試中打開頁面，與 Capybara 一起使用來調試測試。
+
+請查看 `Gemfile` 以獲得完整的依賴列表。
+
+### 版本控制
+
+- Git
+- GitHub
+
+## 資料庫
+
+- PostgreSQL
