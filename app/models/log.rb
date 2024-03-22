@@ -69,11 +69,4 @@ class Log < ApplicationRecord
     (duration_in_min / 60).round(2)
   end
 
-  # 使用 gem 'descriptive_statistics'
-  # def self.user_99th_percentile_duration(durations)
-  #   return nil if durations.empty?
-  #   durations.extend(DescriptiveStatistics)
-  #   percentile_99_duration = durations.percentile(99)
-  #   (percentile_99_duration / 60).round(2)
-  # end
 end
