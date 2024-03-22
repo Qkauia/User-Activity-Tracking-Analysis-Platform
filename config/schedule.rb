@@ -2,7 +2,7 @@
 
 rails_env = ENV['RAILS_ENV'] || :development
 set :environment, rails_env
-set :output, "log/cron_log.log"
+set :output, 'log/cron_log.log'
 env :PATH, ENV['PATH']
 
 every :day, at: '8:00' do

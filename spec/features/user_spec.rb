@@ -138,6 +138,7 @@ RSpec.feature 'User feature', type: :feature do
 
     let!(:average_seconds) { (average_duration * 60).round(2) }
     let!(:longest_seconds) { (longest_duration * 60).round(2) }
+    
 
     scenario 'Logged in (not admin) or not logged in' do
       login_as(user2, scope: :user)

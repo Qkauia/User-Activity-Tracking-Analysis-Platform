@@ -37,6 +37,10 @@ class SummaryMailer < ApplicationMailer
 
     @booking_durations = Log.booking_duration(@daily_date_range)
     @average_duration = Log.average_duration(@booking_durations)
+    @average_duration_second = (Log.average_duration(@booking_durations) * 60).round(2)
     @longest_duration = Log.longest_duration(@booking_durations)
+    @longest_duration_second = (Log.longest_duration(@booking_durations) * 60).round(2)
+    @percentile_99_duration = Log.user_99th_percentile_duration(@booking_durations)
+    @percentile_99_duration_second = (Log.user_99th_percentile_duration(@booking_durations) * 60).round(2)
   end
 end

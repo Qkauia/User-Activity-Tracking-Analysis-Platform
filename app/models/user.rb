@@ -8,12 +8,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :logs
-  has_many :bookings
   has_many :activities
-
+  has_many :bookings
+  has_many :logs
+  
   def already_booked?(activity)
     bookings.where(activity_id: activity.id).exists?
   end
-
 end

@@ -18,3 +18,10 @@
 <% else %>
   <p>當日尚未有人預約</p>
 <% end %>
+<% if @longest_duration %>
+  <p>
+    99%的用戶預約所花費時間 ： <%=  @percentile_99_duration %> 分鐘 (<%=  (@percentile_99_duration * 60).round(2)%> 秒)內
+  </p>
+<% else %>
+  <p>當日尚未有人預約</p>
+<% end %>
