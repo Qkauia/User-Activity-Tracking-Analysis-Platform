@@ -15,5 +15,4 @@ class User < ApplicationRecord
   def already_booked?(activity)
     bookings.where(activity_id: activity.id).exists?
   end
-
 end

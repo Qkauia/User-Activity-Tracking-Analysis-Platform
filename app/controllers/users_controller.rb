@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   def index
     @users = User.includes(:logs).all.sort_by { |user| user.logs.last&.created_at || Time.current }.reverse
     respond_to do |format|
-      format.html 
-      format.json { render json: @users } 
+      format.html
+      format.json { render json: @users }
     end
   end
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     booking_durations = Log.booking_duration(daily_date_range)
     @average_duration = Log.average_duration(booking_durations)
     @longest_duration = Log.longest_duration(booking_durations)
-    
+
     @percentile_99_duration = Log.user_99th_percentile_duration(booking_durations)
   end
 end

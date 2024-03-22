@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 # $bundle exec rspec spec/models/user_spec.rb
 RSpec.describe User, type: :model do
-  # 確保 factory 建構 User Model 實例  
-  it "has a valid factory" do
+  # 確保 factory 建構 User Model 實例
+  it 'has a valid factory' do
     expect(build(:user)).to be_valid
   end
 
@@ -25,7 +27,7 @@ RSpec.describe User, type: :model do
 
     context 'when the user has booked the activity' do
       before do
-        create(:booking, user: user, activity: activity)
+        create(:booking, user:, activity:)
       end
 
       it 'returns true' do

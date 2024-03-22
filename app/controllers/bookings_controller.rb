@@ -11,16 +11,13 @@ class BookingsController < ApplicationController
         raise ActiveRecord::Rollback, '請確實填寫資料' unless @booking.save
 
         current_user.logs.create!(type: 'submitted', booking: @booking, activity: @activity)
-        # SummaryMailer.send_daily_summaries
         redirect_to @activity, notice: '報名成功'
-
       else
-        redirect_to root_path, alert: '時間已經超過了'
+        redirect_to root_path, alert: '人數已滿或者時間已經超過了'
         raise ActiveRecord::Rollback
       end
     end
   rescue ActiveRecord::Rollback => e
-    # 有錯誤訊息就顯示
     redirect_to @activity, alert: e.message.presence || '無法完成報名'
   end
 
@@ -32,7 +29,7 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = current_user&.bookings
+    @bookings = current_user&.bookings&.includes(:activity)
   end
 
   def show
